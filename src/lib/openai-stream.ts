@@ -1,9 +1,5 @@
-/*import {
-    createParser,
-    ParsedEvent,
-    ReconnectInterval,
-  } from "eventsource-parser";
-  */
+import { createParser, ParsedEvent, ReconnectInterval } from "eventsource-parser";
+
   export type ChatGPTAgent = "user" | "system";
   
   export interface ChatGPTMessage {
@@ -30,11 +26,11 @@
     let counter = 0;
   
     const res = await fetch("https://api.openai.com/v1/chat/completions", {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY ?? ""}`,
+    method: 'POST',  
+    headers: {
+        'Content-Type': "application/json",
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
       },
-      method: "POST",
       body: JSON.stringify(payload),
     });
   
@@ -42,10 +38,10 @@
       async start(controller) {
         // callback
         function onParse(event: ParsedEvent | ReconnectInterval) {
-          if (event.type === "event") {
+          if (event.type === 'event') {
             const data = event.data;
             // https://beta.openai.com/docs/api-reference/completions/create#completions/create-stream
-            if (data === "[DONE]") {
+            if (data === '[DONE]') {
               controller.close();
               return;
             }
