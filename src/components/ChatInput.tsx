@@ -6,6 +6,7 @@ import TextareaAutosize from "react-textarea-autosize"
 import { useMutation } from '@tanstack/react-query'
 import { nanoid } from 'nanoid'
 import { Message } from '@/lib/validators/message'
+// import { MessagesContext } from '@/conte'
 
 interface ChatInputProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -19,7 +20,7 @@ const ChatInput: FC<ChatInputProps> = ({className, ...props}) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({messages: 'Whatup'}),
+                body: JSON.stringify({messages: [message]}),
             })
             return response.body
         },

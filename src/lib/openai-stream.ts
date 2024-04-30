@@ -26,11 +26,11 @@ import { createParser, ParsedEvent, ReconnectInterval } from "eventsource-parser
     let counter = 0;
   
     const res = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: 'POST',  
     headers: {
         'Content-Type': "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY ?? ""}`,
       },
+      method: 'POST',  
       body: JSON.stringify(payload),
     });
   
@@ -47,7 +47,9 @@ import { createParser, ParsedEvent, ReconnectInterval } from "eventsource-parser
             }
             try {
               const json = JSON.parse(data);
+              console.log("json",json)
               const text = json.choices[0].delta?.content || "";
+              console.log("text",text)
               if (counter < 2 && (text.match(/\n/) || []).length) {
                 // this is a prefix character (i.e., "\n\n"), do nothing
                 return;
