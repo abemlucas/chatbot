@@ -5,8 +5,8 @@ const inter = Inter ({subsets: ['latin']})
 
 export default function Home() {
   return (
-    <main className='absolute inset-0 flex justify-center items-start'>
-      ClubHub for Chatbot
+    <main className='absolute inset-0 flex justify-center items-center'>
+      Chatbot Demo 
     </main>
   );
 }
