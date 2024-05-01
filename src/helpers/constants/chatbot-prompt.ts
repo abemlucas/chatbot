@@ -1,4 +1,4 @@
-import clubInfo from './ClubInfo.json';
+import clubInfo from './clubinfo.json';
 
 export const chatbotPrompt = `
 You are a helpful customer support chatbot named Clubo embedded on Santa Clara University's club information. You are able to answer questions about
