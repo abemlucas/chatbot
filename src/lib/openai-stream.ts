@@ -20,6 +20,8 @@ import { createParser, ParsedEvent, ReconnectInterval } from "eventsource-parser
   }
   
   export async function OpenAIStream(payload: OpenAIStreamPayload) {
+    console.log("API Key:", process.env.OPENAI_API_KEY);  // Debugging statement
+
     const encoder = new TextEncoder();
     const decoder = new TextDecoder();
   
