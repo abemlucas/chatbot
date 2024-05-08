@@ -3,7 +3,7 @@ import { createParser, ParsedEvent, ReconnectInterval } from "eventsource-parser
   export type ChatGPTAgent = "user" | "system";
   
   export interface ChatGPTMessage {
-    role: ChatGPTAgent;
+    role: string;
     content: string;
   }
   

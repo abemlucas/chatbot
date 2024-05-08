@@ -5,8 +5,8 @@ import { Message } from '@/lib/validators/message'
 const defaultValue = [
     {
       id: nanoid(),
-      text: 'Hello, how can I help you?',
-      isUserMessage: false,
+      content: 'Hello, how can I help you?',
+      role: "assistant",
     },
 ]
 export const MessagesContext = createContext<{
@@ -43,7 +43,7 @@ export function MessagesProvider({ children }: { children: React.ReactNode }) {
       setMessages((prev) =>
         prev.map((message) => {
           if (message.id === id) {
-            return { ...message, text: updateFn(message.text) }
+            return { ...message, content: updateFn(message.content) }
           }
           return message
         })

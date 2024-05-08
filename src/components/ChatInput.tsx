@@ -37,8 +37,9 @@ const ChatInput: FC<ChatInputProps> = ({className, ...props}) => {
             const id = nanoid()
             const responseMessage: Message={
                 id,
-                isUserMessage: false,
-                text: ''
+                content: '',
+                role: "assistant"
+                
             }
             
             addMessage(responseMessage)
@@ -81,8 +82,8 @@ const ChatInput: FC<ChatInputProps> = ({className, ...props}) => {
 
                     const message: Message = {
                         id: nanoid(),
-                        isUserMessage: true, 
-                        text: input
+                        role: "user",
+                        content: input
                     }
                     sendMessage(message)
                 }

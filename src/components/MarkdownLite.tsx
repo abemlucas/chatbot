@@ -1,20 +1,20 @@
 import React from 'react'
 import Link from 'next/link'
 
-const MarkdownLite = ({ text }: { text: string }) => {
+const MarkdownLite = ({ content }: { content: string }) => {
   const linkRegex = /\[(.+?)\]\((.+?)\)/g
   const parts = []
 
   let lastIndex = 0
   let match
 
-  while ((match = linkRegex.exec(text)) !== null) {
+  while ((match = linkRegex.exec(content)) !== null) {
     const [fullMatch, linkText, linkUrl] = match
     const matchStart = match.index
     const matchEnd = matchStart + fullMatch.length
 
     if (lastIndex < matchStart) {
-      parts.push(text.slice(lastIndex, matchStart))
+      parts.push(content.slice(lastIndex, matchStart))
     }
 
     parts.push(
@@ -31,8 +31,8 @@ const MarkdownLite = ({ text }: { text: string }) => {
     lastIndex = matchEnd
   }
 
-  if (lastIndex < text.length) {
-    parts.push(text.slice(lastIndex))
+  if (content && lastIndex < content.length) {
+    parts.push(content.slice(lastIndex))
   }
 
   return (
